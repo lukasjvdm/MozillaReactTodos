@@ -3,6 +3,7 @@ import Todo from "./components/Todo";
 import Form from "./components/Form";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Sidebar from "./components/Sidebar";
 
 const FILTER_MAP = {
   All: (task) => true,
@@ -71,20 +72,26 @@ function App() {
     ));
 
   return (
-    <div className="todoapp stack-large">
-      <h1>TodoMatic</h1>
-      <Form addTask={addTask} />
-      <div className="filters btn-group stack-exception">{filterList}</div>
-      <h2 id="list-heading">
-        {taskList.length} {taskList.length == 1 ? "task" : "tasks"} remaining!
-      </h2>
-      <ul
-        role="list"
-        className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading"
-      >
-        {taskList}
-      </ul>
+    <div className="flex">
+      <div>
+        <Sidebar />
+        <div className="todoapp stack-large">
+          <h1>TodoMatic</h1>
+          <Form addTask={addTask} />
+          <div className="filters btn-group stack-exception">{filterList}</div>
+          <h2 id="list-heading">
+            {taskList.length} {taskList.length == 1 ? "task" : "tasks"}{" "}
+            remaining!
+          </h2>
+          <ul
+            role="list"
+            className="todo-list stack-large stack-exception"
+            aria-labelledby="list-heading"
+          >
+            {taskList}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
